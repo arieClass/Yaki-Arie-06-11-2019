@@ -1,17 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
+import { AppRoutingModule } from './app-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuModule } from 'primeng/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { HomeComponent } from './home/home.component';
-import { FavoritesComponent } from './favorites/favorites.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +20,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+import { CityWeather } from './city-weather';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,13 @@ import { MatInputModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [
+    { provide: CityWeather }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

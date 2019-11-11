@@ -12,7 +12,7 @@ export class CityService {
 
   constructor() { }
 
-  addCity(data): string {
+  addCity(data: any): string {
     let city: City = { key: data.Key, rank: data.Rank, localizedName: data.LocalizedName, countryID: data.Country.ID, countryLocalizedName: data.Country.LocalizedName, cityID: data.AdministrativeArea.ID, favorite: false}
     this.cities.push(city);
     return city.key;
