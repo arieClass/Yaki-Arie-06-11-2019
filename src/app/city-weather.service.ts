@@ -52,12 +52,13 @@ export class CityWeatherService {
     }
   }
 
-  isInFavorites(cityToCheck: CityWeather): boolean{
-    if(this.favorites.some(data=>data.key === cityToCheck.key)){
+  isInFavorites(cityToCheck: CityWeather): boolean {
+    if (this.favorites.some(data => data.key === cityToCheck.key)) {
       return true;
     }
     return false;
   }
+  
   getFavorites(): Observable<CityWeather[]> {
     this.favorites = [];
     let retrievedFav = JSON.parse(localStorage.getItem('favorites'));

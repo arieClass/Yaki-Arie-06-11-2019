@@ -18,10 +18,7 @@ export class AppComponent {
       this.isDarkTheme = this.darkmodeService.isDarkTheme;
     } catch (error) {
       this.toastr.error(error.name, 'Something went wrong', {
-        tapToDismiss: true,
-        closeButton: true,
-        disableTimeOut: true,
-        positionClass: 'toast-top-center'
+        tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
       });
     }
   }

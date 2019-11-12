@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CityWeather } from './city-weather';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,18 @@ export class WeatherApiService {
 
   readonly apikey: string = "E5K6oZxlI1vebAQe2kwcIhT9klJCtQa1";
 
-  constructor(private cityWeather: CityWeather, private httpClient: HttpClient) { }
+  constructor(private cityWeather: CityWeather, private httpClient: HttpClient, private toastr: ToastrService) { }
 
   geoLocationIsAvailable(): boolean {
     if ("geolocation" in navigator) {
-      
-      console.log('geolocation is available');
+      this.toastr.success('geolocation is available on your device', 'navigator', {
+        tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
+      });
       return true;
     } else {
-      console.log('geolocation IS NOT available, default location will be set to Tel Aviv');
+      this.toastr.info('geolocation IS NOT available, default location will be set to Tel Aviv', 'navigator', {
+        tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
+      });
       return false;
     }
   }
