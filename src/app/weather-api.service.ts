@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class WeatherApiService {
 
-  readonly apikey: string = "E5K6oZxlI1vebAQe2kwcIhT9klJCtQa1";
+  readonly apikey: string = "2FqZaZS4H5Tz7PGCHjQvenoFC39oeIGw";
 
   constructor(private cityWeather: CityWeather, private httpClient: HttpClient, private toastr: ToastrService) { }
 

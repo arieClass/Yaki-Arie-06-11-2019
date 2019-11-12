@@ -27,7 +27,7 @@ export class FavoritesComponent implements OnInit {
     try {
       this.cityWeatherService.getFavorites().toPromise().then(favorites => { this.favorites = favorites; });
     } catch (error) {
-      this.toastr.error(error.name, 'Something went wrong', {
+      this.toastr.error(error.name + ", Could be that there are no favorite cities to be shown", 'Something went wrong', {
         tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
       });
     }

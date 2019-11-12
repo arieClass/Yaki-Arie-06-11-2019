@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         let data = await this.weatherApiService.getSearchedCity(this.searchCity.value);
         this.setAllHomeCityDetails(data[0]);
       }
-      else {
+      else{
         this.toastr.warning('City name has to contain English words only', 'Typo', {
           tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
         });
