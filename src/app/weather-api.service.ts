@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-//import { CityService } from './city.service';
 import { HttpClient } from '@angular/common/http';
-import {CityWeather} from './city-weather';
+import { CityWeather } from './city-weather';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherApiService {
 
-  readonly apikey: string = "gGzT9FiXTEcAx1KFXQyVXKneOOVPG0sS";
-  
+  readonly apikey: string = "E5K6oZxlI1vebAQe2kwcIhT9klJCtQa1";
+
   constructor(private cityWeather: CityWeather, private httpClient: HttpClient) { }
 
   geoLocationIsAvailable(): boolean {
     if ("geolocation" in navigator) {
+      
       console.log('geolocation is available');
       return true;
     } else {
@@ -32,20 +32,22 @@ export class WeatherApiService {
     let coords: any = await this.getCurrentPosition();
     let latitude = coords.coords.latitude;
     let longitude = coords.coords.longitude;
-    let data = await this.httpClient.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${this.apikey} &q=${latitude} %2C${longitude} `).toPromise();
-    console.log(data);
+    let data = await this.httpClient.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${this.apikey}&q=${latitude}%2C${longitude}`).toPromise();
     return data;
   }
 
   async getCurrentCondition(key: string): Promise<any> {
     let data = await this.httpClient.get(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${this.apikey}`).toPromise();
-    console.log(data[0]);
     return data[0];
   }
 
-  async get5daysForcasts(key: string): Promise<any>{
+  async get5daysForcasts(key: string): Promise<any> {
     let data = await this.httpClient.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.apikey}`).toPromise();
-    console.log(data);
+    return data;
+  }
+
+  async getSearchedCity(searchedCity: string): Promise<any> {
+    let data = await this.httpClient.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${this.apikey}&q=${searchedCity}`).toPromise();
     return data;
   }
 }

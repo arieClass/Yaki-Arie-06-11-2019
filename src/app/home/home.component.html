@@ -1,14 +1,9 @@
 <div class="root">
     <div class="searchcity">
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-                <input type="text" placeholder="Enter city name to search" aria-label="Number" matInput
-                    [formControl]="myControl" [matAutocomplete]="auto">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option}}
-                    </mat-option>
-                </mat-autocomplete>
+        <form (ngSubmit)="onSubmit($event)" style="text-align: center;">
+            <mat-form-field>
+                <input matInput type="text" placeholder="Enter city name to search" [formControl]="searchCity">
+                    <input type="submit" hidden>
             </mat-form-field>
         </form>
     </div>
@@ -29,7 +24,8 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3" [rowspan]="2"></mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <button mat-fab (click)="addOrRemoveFavorite();" [ngStyle]="{'color': buttonColor, 'background-color': buttonBackColor}">
+            <button mat-fab (click)="addOrRemoveFavorite();"
+                [ngStyle]="{'color': buttonColor, 'background-color': buttonBackColor}">
                 <mat-icon>favorite</mat-icon>
             </button>
         </mat-grid-tile>

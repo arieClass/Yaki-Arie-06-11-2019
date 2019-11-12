@@ -1,19 +1,19 @@
 <mat-grid-list cols="5" rowHeight="85px">
-    <mat-grid-tile *ngFor="let city of favorites" [colspan]="1" [rowspan]="3">
-        <mat-card  *ngIf="city">
-            <mat-card-header style="justify-content: center">
-                <mat-card-title>{{city.title}}</mat-card-title>
-                <mat-card-title *ngIf="isCelsius; else metric">{{city.imperial}}</mat-card-title>
-                <ng-template #metric>
-                    <mat-card-title>{{city.metric}}</mat-card-title>
-                </ng-template>
-            </mat-card-header>
-            <mat-card-content>
-                <img mat-card-image src={{city.icon}}>
-            </mat-card-content>
-            <mat-grid-tile [colspan]="5" [rowspan]="2">
-                <span class="weathertext">{{city.weatherText}}</span>
-            </mat-grid-tile>
-        </mat-card>
-    </mat-grid-tile>
+    <ng-container *ngIf="favorites">
+        <mat-grid-tile *ngFor="let city of favorites" [colspan]="1" [rowspan]="3">
+            <mat-card>
+                <mat-card-header style="justify-content: center">
+                    <mat-card-title>{{city.title}}</mat-card-title>
+                    <mat-card-title *ngIf="isCelsius; else metric">{{city.imperial}}</mat-card-title>
+                    <ng-template #metric>
+                        <mat-card-title>{{city.metric}}</mat-card-title>
+                    </ng-template>
+                </mat-card-header>
+                <mat-card-content>
+                    <img mat-card-image src={{city.icon}}>
+                </mat-card-content>
+                <mat-card-footer class="weathertext">{{city.weatherText}}</mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+    </ng-container>
 </mat-grid-list>

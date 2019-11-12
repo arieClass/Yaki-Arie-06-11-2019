@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherApiService } from '../weather-api.service';
-//import { CityService } from '../city.service';
 import { CityWeatherService } from '../city-weather.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-favorites',
@@ -15,16 +15,22 @@ export class FavoritesComponent implements OnInit {
   buttonColor: string = 'grey';
   buttonBackColor: string = 'white';
 
-  constructor(private weatherApiService: WeatherApiService, private cityWeatherService: CityWeatherService) { }
+  constructor(private weatherApiService: WeatherApiService, private cityWeatherService: CityWeatherService, private toastr: ToastrService) { }
 
   ngDoCheck() {
     this.cityWeatherService.isCelsius.subscribe(data => {
       this.isCelsius = data;
     });
-    this.cityWeatherService.getFavorites().toPromise().then(favorites => { this.favorites = favorites; });
   }
+
   ngOnInit() {
-    this.cityWeatherService.getFavorites().toPromise().then(favorites => { this.favorites = favorites; });
+    try {
+      this.cityWeatherService.getFavorites().toPromise().then(favorites => { this.favorites = favorites; });
+    } catch (error) {
+      this.toastr.error(error.name, 'Something went wrong', {
+        tapToDismiss: true, closeButton: true, disableTimeOut: true, positionClass: 'toast-top-center'
+      });
+    }
   }
 
 }

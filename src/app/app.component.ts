@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { DarkmodeService } from './darkmode.service';
 import { Observable, Subscribable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
-import { promise } from 'protractor';
-import { async } from 'q';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +11,18 @@ import { async } from 'q';
 })
 export class AppComponent {
   isDarkTheme: Observable<boolean>;
-  constructor(private darkmodeService: DarkmodeService, private httpClient: HttpClient) { }
+  constructor(private darkmodeService: DarkmodeService, private httpClient: HttpClient, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.isDarkTheme = this.darkmodeService.isDarkTheme;
+    try {
+      this.isDarkTheme = this.darkmodeService.isDarkTheme;
+    } catch (error) {
+      this.toastr.error(error.name, 'Something went wrong', {
+        tapToDismiss: true,
+        closeButton: true,
+        disableTimeOut: true,
+        positionClass: 'toast-top-center'
+      });
+    }
   }
 }

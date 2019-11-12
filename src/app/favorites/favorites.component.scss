@@ -1,10 +1,17 @@
-
 mat-card {
-    width: calc(95%);
-    height: calc(95%);
-    padding: 5px;
-  }
-  
-  .weathertext {
-    font: 70px Tahoma, Helvetica, Arial, Sans-Serif;
-  }
+  width: calc(95%);
+  height: calc(95%);
+  padding: 5px;
+}
+
+mat-card-title{
+  margin-bottom: 8px;
+}
+mat-card-content {
+  margin-bottom: 0;
+}
+
+.weathertext {
+  font: 30px Tahoma, Helvetica, Arial, Sans-Serif;
+  text-align: center;
+}
