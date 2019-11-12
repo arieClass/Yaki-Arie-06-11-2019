@@ -36,22 +36,22 @@ export class WeatherApiService {
     let coords: any = await this.getCurrentPosition();
     let latitude = coords.coords.latitude;
     let longitude = coords.coords.longitude;
-    let data = await this.httpClient.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${this.apikey}&q=${latitude}%2C${longitude}`).toPromise();
+    let data = await this.httpClient.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${this.apikey}&q=${latitude}%2C${longitude}`).toPromise();
     return data;
   }
 
   async getCurrentCondition(key: string): Promise<any> {
-    let data = await this.httpClient.get(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${this.apikey}`).toPromise();
+    let data = await this.httpClient.get(`https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${this.apikey}`).toPromise();
     return data[0];
   }
 
   async get5daysForcasts(key: string): Promise<any> {
-    let data = await this.httpClient.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.apikey}`).toPromise();
+    let data = await this.httpClient.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.apikey}`).toPromise();
     return data;
   }
 
   async getSearchedCity(searchedCity: string): Promise<any> {
-    let data = await this.httpClient.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${this.apikey}&q=${searchedCity}`).toPromise();
+    let data = await this.httpClient.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${this.apikey}&q=${searchedCity}`).toPromise();
     return data;
   }
 }
